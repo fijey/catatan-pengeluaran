@@ -148,13 +148,24 @@ function registerButtonHandlers() {
     * Toggle specified element
     * @param {string} elementId The ID of the selected element
     */
-    function toggleElement(elementId) {
-        const elem = document.getElementById(elementId);
-        if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
-            elem.style.display = 'none';
-        } else {
-            elem.style.display = 'block';
-        }
+}
+
+function toggleElement(elementId) {
+    const elem = document.getElementById(elementId);
+    if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
+        elem.style.display = 'none';
+    } else {
+        elem.style.display = 'block';
     }
+}
+
+function liffprofile() {
+    liff.getProfile()
+        .then(profile => {
+            const name = profile.displayName
+        })
+        .catch((err) => {
+            console.log('error', err);
+        });
 }
 
