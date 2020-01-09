@@ -65,7 +65,6 @@ function initializeApp() {
     displayLiffData();
     displayIsInClientInfo();
     registerButtonHandlers();
-    liffprofile();
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
@@ -126,6 +125,16 @@ function registerButtonHandlers() {
         }
     });
 
+    document.getElementById('liffgetprofile').addEventListener('click', function () {
+        liff.getProfile()
+            .then(profile => {
+                const name = profile.displayName
+            })
+            .catch((err) => {
+                console.log('error', err);
+            });
+    });
+
     document.getElementById('sendMessageButton').addEventListener('click', function () {
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
@@ -159,14 +168,3 @@ function toggleElement(elementId) {
         elem.style.display = 'block';
     }
 }
-
-function liffprofile() {
-    liff.getProfile()
-        .then(profile => {
-            const name = profile.displayName
-        })
-        .catch((err) => {
-            console.log('error', err);
-        });
-}
-
